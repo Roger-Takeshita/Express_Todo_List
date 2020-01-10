@@ -1,0 +1,25 @@
+<%- include('./partials/header') %>
+    <div id="main">
+      <div id="input-box">
+        <form action="/" method="POST">
+          <input type="text" name="text" required>
+          <button type="submit">Add To Do</button>
+        </form>
+      </div>
+      <hr>
+      <ul id="list"></ul>
+        <% if (todos.length) { %>
+            <% todos.forEach(function(todo, index) { %>
+              <li><%= todo.todo %>
+                <%= todo.done ? '' : ' - Not Done' %>
+                <form action="/<%= index %>?_method=DELETE" method="POST">
+                  <button type="submit">Delete</button>
+                </form>
+              </li>
+            <% }) %>
+        <% } else { %>
+          <h3>There are no To Dos yet!</h3>
+        <% } %>
+      </ul>
+    </div>
+<%- include('./partials/footer') %>
